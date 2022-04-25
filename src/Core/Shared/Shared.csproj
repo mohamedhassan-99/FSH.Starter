@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>FSH.Starter.Shared</RootNamespace>
+        <AssemblyName>FSH.Starter.Shared</AssemblyName>
+    </PropertyGroup>
+</Project>

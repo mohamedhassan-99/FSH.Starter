@@ -1,0 +1,1 @@
+﻿global using FSH.Starter.Domain.Common.Contracts;

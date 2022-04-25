@@ -1,0 +1,8 @@
+{
+  "DatabaseSettings": {
+    //"DBProvider": "mssql",
+    //"ConnectionString": "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=preReleaseTest;Integrated Security=True;MultipleActiveResultSets=True"
+    "DBProvider": "mssql",
+    "ConnectionString": "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=rootTenantDb;Integrated Security=True;MultipleActiveResultSets=True"
+  }
+}

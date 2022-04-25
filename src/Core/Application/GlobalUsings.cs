@@ -1,0 +1,17 @@
+global using Ardalis.Specification;
+global using FluentValidation;
+global using FSH.Starter.Application.Common.Events;
+global using FSH.Starter.Application.Common.Exceptions;
+global using FSH.Starter.Application.Common.FileStorage;
+global using FSH.Starter.Application.Common.Interfaces;
+global using FSH.Starter.Application.Common.Models;
+global using FSH.Starter.Application.Common.Persistence;
+global using FSH.Starter.Application.Common.Specification;
+global using FSH.Starter.Application.Common.Validation;
+global using FSH.Starter.Domain.Catalog;
+global using FSH.Starter.Domain.Common;
+global using FSH.Starter.Domain.Common.Contracts;
+global using FSH.Starter.Shared.Notifications;
+global using MediatR;
+global using Microsoft.Extensions.Localization;
+global using Microsoft.Extensions.Logging;
