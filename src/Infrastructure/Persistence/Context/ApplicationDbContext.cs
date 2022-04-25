@@ -18,6 +18,7 @@ public class ApplicationDbContext : BaseDbContext
     public DbSet<Product> Products => Set<Product>();
     public DbSet<Asset> Assets => Set<Asset>();
     public DbSet<Brand> Brands => Set<Brand>();
+    public DbSet<Category> Categories => Set<Category>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
