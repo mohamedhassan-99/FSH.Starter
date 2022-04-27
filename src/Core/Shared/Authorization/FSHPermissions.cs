@@ -28,6 +28,7 @@ public static class FSHResource
     public const string Assets = nameof(Assets);
     public const string Brands = nameof(Brands);
     public const string Categories = nameof(Categories);
+    public const string Projects = nameof(Projects);
 }
 
 public static class FSHPermissions
@@ -69,13 +70,20 @@ public static class FSHPermissions
         new("Delete Brands", FSHAction.Delete, FSHResource.Brands),
         new("Generate Brands", FSHAction.Generate, FSHResource.Brands),
         new("Clean Brands", FSHAction.Clean, FSHResource.Brands),
-        new("View Brands", FSHAction.View, FSHResource.Categories, IsBasic: true),
-        new("Search Brands", FSHAction.Search, FSHResource.Categories, IsBasic: true),
-        new("Create Brands", FSHAction.Create, FSHResource.Categories),
-        new("Update Brands", FSHAction.Update, FSHResource.Categories),
-        new("Delete Brands", FSHAction.Delete, FSHResource.Categories),
-        new("Generate Brands", FSHAction.Generate, FSHResource.Categories),
-        new("Clean Brands", FSHAction.Clean, FSHResource.Categories),
+        new("View Categories", FSHAction.View, FSHResource.Categories, IsBasic: true),
+        new("Search Categories", FSHAction.Search, FSHResource.Categories, IsBasic: true),
+        new("Create Categories", FSHAction.Create, FSHResource.Categories),
+        new("Update Categories", FSHAction.Update, FSHResource.Categories),
+        new("Delete Categories", FSHAction.Delete, FSHResource.Categories),
+        new("Generate Categories", FSHAction.Generate, FSHResource.Categories),
+        new("Clean Categories", FSHAction.Clean, FSHResource.Categories),
+        new("View Projects", FSHAction.View, FSHResource.Projects, IsBasic: true),
+        new("Search Projects", FSHAction.Search, FSHResource.Projects, IsBasic: true),
+        new("Create Projects", FSHAction.Create, FSHResource.Projects),
+        new("Update Projects", FSHAction.Update, FSHResource.Projects),
+        new("Delete Projects", FSHAction.Delete, FSHResource.Projects),
+        new("Generate Projects", FSHAction.Generate, FSHResource.Projects),
+        new("Clean Projects", FSHAction.Clean, FSHResource.Projects),
         new("View Tenants", FSHAction.View, FSHResource.Tenants, IsRoot: true),
         new("Create Tenants", FSHAction.Create, FSHResource.Tenants, IsRoot: true),
         new("Update Tenants", FSHAction.Update, FSHResource.Tenants, IsRoot: true),
