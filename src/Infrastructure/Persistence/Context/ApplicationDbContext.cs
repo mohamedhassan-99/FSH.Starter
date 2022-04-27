@@ -22,6 +22,7 @@ public class ApplicationDbContext : BaseDbContext
     public DbSet<Project> Projects => Set<Project>();
     public DbSet<Department> Departments => Set<Department>();
     public DbSet<Tag> Tags => Set<Tag>();
+    public DbSet<Note> Notes => Set<Note>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
