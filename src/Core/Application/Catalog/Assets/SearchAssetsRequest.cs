@@ -4,6 +4,7 @@ public class SearchAssetsRequest : PaginationFilter, IRequest<PaginationResponse
 {
     public Guid? BrandId { get; set; }
     public Guid? CategoryId { get; set; }
+    public Guid? ProjectId { get; set; }
     public decimal? MinimumRate { get; set; }
     public decimal? MaximumRate { get; set; }
 }

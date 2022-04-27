@@ -9,6 +9,8 @@ public class AssetDto : IDto
     public string? ImagePath { get; set; }
     public Guid BrandId { get; set; }
     public Guid CategoryId { get; set; }
+    public Guid ProjectId { get; set; }
     public string BrandName { get; set; } = default!;
     public string CategoryName { get; set; } = default!;
+    public string ProjectName { get; set; } = default!;
 }

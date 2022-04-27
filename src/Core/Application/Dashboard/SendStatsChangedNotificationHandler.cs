@@ -9,6 +9,8 @@ public class SendStatsChangedNotificationHandler :
     IEventNotificationHandler<EntityDeletedEvent<Brand>>,
     IEventNotificationHandler<EntityCreatedEvent<Category>>,
     IEventNotificationHandler<EntityDeletedEvent<Category>>,
+    IEventNotificationHandler<EntityCreatedEvent<Project>>,
+    IEventNotificationHandler<EntityDeletedEvent<Project>>,
     IEventNotificationHandler<EntityCreatedEvent<Product>>,
     IEventNotificationHandler<EntityDeletedEvent<Product>>,
     IEventNotificationHandler<EntityCreatedEvent<Asset>>,
@@ -32,6 +34,10 @@ public class SendStatsChangedNotificationHandler :
     public Task Handle(EventNotification<EntityCreatedEvent<Category>> notification, CancellationToken cancellationToken) =>
         SendStatsChangedNotification(notification.Event, cancellationToken);
     public Task Handle(EventNotification<EntityDeletedEvent<Category>> notification, CancellationToken cancellationToken) =>
+        SendStatsChangedNotification(notification.Event, cancellationToken);
+    public Task Handle(EventNotification<EntityCreatedEvent<Project>> notification, CancellationToken cancellationToken) =>
+        SendStatsChangedNotification(notification.Event, cancellationToken);
+    public Task Handle(EventNotification<EntityDeletedEvent<Project>> notification, CancellationToken cancellationToken) =>
         SendStatsChangedNotification(notification.Event, cancellationToken);
     public Task Handle(EventNotification<EntityCreatedEvent<Product>> notification, CancellationToken cancellationToken) =>
         SendStatsChangedNotification(notification.Event, cancellationToken);

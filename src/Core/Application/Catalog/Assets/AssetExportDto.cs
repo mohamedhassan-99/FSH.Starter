@@ -7,4 +7,5 @@ public class AssetExportDto : IDto
     public decimal Rate { get; set; } = default!;
     public string BrandName { get; set; } = default!;
     public string CategoryName { get; set; } = default!;
+    public string ProjectName { get; set; } = default!;
 }
