@@ -1,5 +1,5 @@
 ﻿using Ardalis.Specification;
-using FSH.Starter.Application.Catalog.Categories;
+using FSH.Starter.Application.Catalog.Projects;
 using FSH.Starter.Application.Common.Interfaces;
 using FSH.Starter.Application.Common.Persistence;
 using FSH.Starter.Domain.Catalog;
@@ -13,21 +13,21 @@ using Microsoft.Extensions.Logging;
 
 namespace FSH.Starter.Infrastructure.Catalog;
 
-public class CategoryGeneratorJob : ICategoryGeneratorJob
+public class ProjectGeneratorJob : IProjectGeneratorJob
 {
-    private readonly ILogger<CategoryGeneratorJob> _logger;
+    private readonly ILogger<ProjectGeneratorJob> _logger;
     private readonly ISender _mediator;
-    private readonly IReadRepository<Category> _repository;
+    private readonly IReadRepository<Project> _repository;
     private readonly IProgressBarFactory _progressBar;
     private readonly PerformingContext _performingContext;
     private readonly INotificationSender _notifications;
     private readonly ICurrentUser _currentUser;
     private readonly IProgressBar _progress;
 
-    public CategoryGeneratorJob(
-        ILogger<CategoryGeneratorJob> logger,
+    public ProjectGeneratorJob(
+        ILogger<ProjectGeneratorJob> logger,
         ISender mediator,
-        IReadRepository<Category> repository,
+        IReadRepository<Project> repository,
         IProgressBarFactory progressBar,
         PerformingContext performingContext,
         INotificationSender notifications,
@@ -65,9 +65,9 @@ public class CategoryGeneratorJob : ICategoryGeneratorJob
         foreach (int index in Enumerable.Range(1, nSeed))
         {
             await _mediator.Send(
-                new CreateCategoryRequest
+                new CreateProjectRequest
                 {
-                    Name = $"Category Random - {Guid.NewGuid()}",
+                    Name = $"Project Random - {Guid.NewGuid()}",
                     Description = "Funny description"
                 },
                 cancellationToken);
@@ -84,21 +84,21 @@ public class CategoryGeneratorJob : ICategoryGeneratorJob
     {
         _logger.LogInformation("Initializing Job with Id: {jobId}", _performingContext.BackgroundJob.Id);
 
-        var items = await _repository.ListAsync(new RandomCategoriesSpec(), cancellationToken);
+        var items = await _repository.ListAsync(new RandomProjectsSpec(), cancellationToken);
 
-        _logger.LogInformation("Categorys Random: {categoryCount} ", items.Count.ToString());
+        _logger.LogInformation("Projects Random: {projectCount} ", items.Count.ToString());
 
         foreach (var item in items)
         {
-            await _mediator.Send(new DeleteCategoryRequest(item.Id), cancellationToken);
+            await _mediator.Send(new DeleteProjectRequest(item.Id), cancellationToken);
         }
 
-        _logger.LogInformation("All random categories deleted.");
+        _logger.LogInformation("All random projects deleted.");
     }
 }
 
-public class RandomCategoriesSpec : Specification<Category>
+public class RandomProjectsSpec : Specification<Project>
 {
-    public RandomCategoriesSpec() =>
-        Query.Where(b => !string.IsNullOrEmpty(b.Name) && b.Name.Contains("Category Random"));
+    public RandomProjectsSpec() =>
+        Query.Where(b => !string.IsNullOrEmpty(b.Name) && b.Name.Contains("Project Random"));
 }
