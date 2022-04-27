@@ -29,6 +29,7 @@ public static class FSHResource
     public const string Brands = nameof(Brands);
     public const string Categories = nameof(Categories);
     public const string Departments = nameof(Departments);
+    public const string Projects = nameof(Projects);
 }
 
 public static class FSHPermissions
@@ -64,12 +65,19 @@ public static class FSHPermissions
         new("Delete Assets", FSHAction.Delete, FSHResource.Assets),
         new("Export Assets", FSHAction.Export, FSHResource.Assets),
 
-         new("View Departments", FSHAction.View, FSHResource.Departments, IsBasic: true),
+        new("View Departments", FSHAction.View, FSHResource.Departments, IsBasic: true),
         new("Search Departments", FSHAction.Search, FSHResource.Departments, IsBasic: true),
         new("Create Departments", FSHAction.Create, FSHResource.Departments),
         new("Update Departments", FSHAction.Update, FSHResource.Departments),
         new("Delete Departments", FSHAction.Delete, FSHResource.Departments),
         new("Export Departments", FSHAction.Export, FSHResource.Departments),
+
+        new("View Projects", FSHAction.View, FSHResource.Projects, IsBasic: true),
+        new("Search Projects", FSHAction.Search, FSHResource.Projects, IsBasic: true),
+        new("Create Projects", FSHAction.Create, FSHResource.Projects),
+        new("Update Projects", FSHAction.Update, FSHResource.Projects),
+        new("Delete Projects", FSHAction.Delete, FSHResource.Projects),
+        new("Export Projects", FSHAction.Export, FSHResource.Projects),
 
         new("View Brands", FSHAction.View, FSHResource.Brands, IsBasic: true),
         new("Search Brands", FSHAction.Search, FSHResource.Brands, IsBasic: true),

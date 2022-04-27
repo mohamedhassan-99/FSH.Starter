@@ -19,7 +19,7 @@ public class Department : BaseEntity,IAggregateRoot
     {
         if (name is not null && Name?.Equals(name) is not true) Name = name;
         if (desc is not null && Description?.Equals(desc) is not true) Description = desc;
-        return this ;
+        return this;
 
     }
 }
