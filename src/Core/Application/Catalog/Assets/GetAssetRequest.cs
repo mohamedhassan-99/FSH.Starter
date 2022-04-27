@@ -17,6 +17,6 @@ public class GetAssetRequestHandler : IRequestHandler<GetAssetRequest, AssetDeta
 
     public async Task<AssetDetailsDto> Handle(GetAssetRequest request, CancellationToken cancellationToken) =>
         await _repository.GetBySpecAsync(
-            (ISpecification<Asset, AssetDetailsDto>)new AssetByIdSpec(request.Id), cancellationToken)
+            (ISpecification<Asset, AssetDetailsDto>)new AssetByIdWithCategorySpec(request.Id), cancellationToken)
         ?? throw new NotFoundException(string.Format(_localizer["asset.notfound"], request.Id));
 }
