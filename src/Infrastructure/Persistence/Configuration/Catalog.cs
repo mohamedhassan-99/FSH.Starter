@@ -17,6 +17,20 @@ public class BrandConfig : IEntityTypeConfiguration<Brand>
     }
 }
 
+public class DepartmentConfig : IEntityTypeConfiguration<Department>
+{
+    public void Configure(EntityTypeBuilder<Department> builder)
+    {
+        builder.IsMultiTenant();
+
+        builder
+            .Property(b => b.Name)
+                .HasMaxLength(256);
+        builder
+            .Property(b => b.Description)
+               .HasMaxLength(1024);
+    }
+}
 public class ProductConfig : IEntityTypeConfiguration<Product>
 {
     public void Configure(EntityTypeBuilder<Product> builder)

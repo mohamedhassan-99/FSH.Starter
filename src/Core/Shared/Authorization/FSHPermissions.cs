@@ -28,6 +28,7 @@ public static class FSHResource
     public const string Assets = nameof(Assets);
     public const string Brands = nameof(Brands);
     public const string Categories = nameof(Categories);
+    public const string Departments = nameof(Departments);
 }
 
 public static class FSHPermissions
@@ -56,12 +57,12 @@ public static class FSHPermissions
         new("Update Products", FSHAction.Update, FSHResource.Products),
         new("Delete Products", FSHAction.Delete, FSHResource.Products),
         new("Export Products", FSHAction.Export, FSHResource.Products),
-        new("View Products", FSHAction.View, FSHResource.Assets, IsBasic: true),
-        new("Search Products", FSHAction.Search, FSHResource.Assets, IsBasic: true),
-        new("Create Products", FSHAction.Create, FSHResource.Assets),
-        new("Update Products", FSHAction.Update, FSHResource.Assets),
-        new("Delete Products", FSHAction.Delete, FSHResource.Assets),
-        new("Export Products", FSHAction.Export, FSHResource.Assets),
+        new("View Assets", FSHAction.View, FSHResource.Assets, IsBasic: true),
+        new("Search Assets", FSHAction.Search, FSHResource.Assets, IsBasic: true),
+        new("Create Assets", FSHAction.Create, FSHResource.Assets),
+        new("Update Assets", FSHAction.Update, FSHResource.Assets),
+        new("Delete Assets", FSHAction.Delete, FSHResource.Assets),
+        new("Export Assets", FSHAction.Export, FSHResource.Assets),
         new("View Brands", FSHAction.View, FSHResource.Brands, IsBasic: true),
         new("Search Brands", FSHAction.Search, FSHResource.Brands, IsBasic: true),
         new("Create Brands", FSHAction.Create, FSHResource.Brands),
@@ -69,6 +70,15 @@ public static class FSHPermissions
         new("Delete Brands", FSHAction.Delete, FSHResource.Brands),
         new("Generate Brands", FSHAction.Generate, FSHResource.Brands),
         new("Clean Brands", FSHAction.Clean, FSHResource.Brands),
+
+        new("View Departments", FSHAction.View, FSHResource.Departments, IsBasic: true),
+        new("Search Departments", FSHAction.Search, FSHResource.Departments, IsBasic: true),
+        new("Create Departments", FSHAction.Create, FSHResource.Departments),
+        new("Update Departments", FSHAction.Update, FSHResource.Departments),
+        new("Delete Departments", FSHAction.Delete, FSHResource.Departments),
+        new("Generate Departments", FSHAction.Generate, FSHResource.Departments),
+        new("Clean Departments", FSHAction.Clean, FSHResource.Departments),
+
         new("View Brands", FSHAction.View, FSHResource.Categories, IsBasic: true),
         new("Search Brands", FSHAction.Search, FSHResource.Categories, IsBasic: true),
         new("Create Brands", FSHAction.Create, FSHResource.Categories),
