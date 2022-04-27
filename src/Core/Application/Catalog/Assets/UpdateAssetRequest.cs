@@ -10,6 +10,7 @@ public class UpdateAssetRequest : IRequest<Guid>
     public decimal Rate { get; set; }
     public Guid BrandId { get; set; }
     public Guid CategoryId { get; set; }
+    public Guid ProjectId { get; set; }
     public bool DeleteCurrentImage { get; set; } = false;
     public FileUploadRequest? Image { get; set; }
 }
@@ -46,7 +47,7 @@ public class UpdateAssetRequestHandler : IRequestHandler<UpdateAssetRequest, Gui
             ? await _file.UploadAsync<Asset>(request.Image, FileType.Image, cancellationToken)
             : null;
 
-        var updatedAsset = asset.Update(request.Name, request.Description, request.Rate, request.BrandId, request.CategoryId, assetImagePath);
+        var updatedAsset = asset.Update(request.Name, request.Description, request.Rate, request.BrandId, request.CategoryId, request.ProjectId, assetImagePath);
 
         // Add Domain Events to be raised after the commit
         asset.DomainEvents.Add(EntityUpdatedEvent.WithEntity(asset));

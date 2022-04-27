@@ -5,5 +5,5 @@ public class AssetByIdWithCategorySpec : Specification<Asset, AssetDetailsDto>, 
     public AssetByIdWithCategorySpec(Guid id) =>
         Query
             .Where(p => p.Id == id)
-            .Include(p => p.Brand);
+            .Include(p => p.Category);
 }
