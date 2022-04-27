@@ -30,6 +30,7 @@ public static class FSHResource
     public const string Categories = nameof(Categories);
     public const string Departments = nameof(Departments);
     public const string Projects = nameof(Projects);
+    public const string Tags = nameof(Tags);
 }
 
 public static class FSHPermissions
@@ -78,6 +79,13 @@ public static class FSHPermissions
         new("Update Projects", FSHAction.Update, FSHResource.Projects),
         new("Delete Projects", FSHAction.Delete, FSHResource.Projects),
         new("Export Projects", FSHAction.Export, FSHResource.Projects),
+
+        new("View Tags", FSHAction.View, FSHResource.Tags, IsBasic: true),
+        new("Search Tags", FSHAction.Search, FSHResource.Tags, IsBasic: true),
+        new("Create Tags", FSHAction.Create, FSHResource.Tags),
+        new("Update Tags", FSHAction.Update, FSHResource.Tags),
+        new("Delete Tags", FSHAction.Delete, FSHResource.Tags),
+        new("Export Tags", FSHAction.Export, FSHResource.Tags),
 
         new("View Brands", FSHAction.View, FSHResource.Brands, IsBasic: true),
         new("Search Brands", FSHAction.Search, FSHResource.Brands, IsBasic: true),

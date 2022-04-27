@@ -14,7 +14,6 @@ public class DepartmentController : VersionedApiController
     {
         return Mediator.Send(request);
     }
-    
     [HttpGet("{id:guid}")]
     [MustHavePermission(FSHAction.View, FSHResource.Departments)]
     [OpenApiOperation("Get department details.", "")]

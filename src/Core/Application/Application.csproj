@@ -16,4 +16,7 @@
         <ProjectReference Include="..\Domain\Domain.csproj" />
         <ProjectReference Include="..\Shared\Shared.csproj" />
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Catalog\Tag\" />
+    </ItemGroup>
 </Project>
