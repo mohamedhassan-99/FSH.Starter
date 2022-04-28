@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace FSH.Starter.Domain.Catalog;
 
-public class Tag
+public class Tag : BaseEntity, IAggregateRoot
 {
     public string Name { get; set; }
     public string? Color { get; set; }
+
 }

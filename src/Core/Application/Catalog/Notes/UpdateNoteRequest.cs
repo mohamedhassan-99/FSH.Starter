@@ -9,6 +9,7 @@ namespace FSH.Starter.Application.Catalog.Notes;
 public class UpdateNoteRequest : IRequest<Guid>
 {
     public Guid Id { get; set; }
+    public Guid assetId { get; set; }
     public string Name { get; set; } = default!;
     public string NoteContent { get; set; }
 }
@@ -40,7 +41,7 @@ public class UpdateNoteRequestHandler : IRequestHandler<UpdateNoteRequest, Guid>
 
         _ = brand ?? throw new NotFoundException(string.Format(_localizer["brand.notfound"], request.Id));
 
-        brand.Update(request.Name, request.NoteContent);
+        brand.Update(request.Name,request.assetId, request.NoteContent);
 
         await _repository.UpdateAsync(brand, cancellationToken);
 

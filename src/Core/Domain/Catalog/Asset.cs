@@ -4,19 +4,19 @@ public class Asset : AuditableEntity, IAggregateRoot
 {
     public string Name { get; private set; } = default!;
     public string? Description { get; private set; }
-    public decimal Rate { get; private set; }
+    public decimal? Rate { get; private set; }
     public string? ImagePath { get; private set; }
     public Guid? BrandId { get; private set; }
     public Guid? CategoryId { get; private set; }
     public Guid? ProjectId { get; private set; }
     public Guid? DepartmentId { get; private set; }
+  
     public virtual Brand Brand { get; private set; } = default!;
     public virtual Category Category { get; private set; } = default!;
     public virtual Project Project { get; private set; } = default!;
     public virtual Department Department { get; private set; } = default!;
      
-
-    public Asset(string name, string? description, decimal rate, Guid departmentId, Guid brandId, Guid categoryId, Guid projectId, string? imagePath)
+    public Asset(string name, string? description, decimal rate, string? imagePath, Guid? brandId, Guid? categoryId, Guid? projectId, Guid? departmentId)
     {
         Name = name;
         Description = description;
@@ -28,7 +28,7 @@ public class Asset : AuditableEntity, IAggregateRoot
         DepartmentId = departmentId;
     }
 
-    public Asset Update(string? name, string? description, decimal? rate, Guid? departmentId, Guid? brandId, Guid? categoryId, Guid? projectId, string? imagePath)
+    public Asset Update(string? name, string? description, decimal? rate, string? imagePath,  Guid? brandId, Guid? categoryId, Guid? projectId, Guid? departmentId)
     {
         if (name is not null && Name?.Equals(name) is not true) Name = name;
         if (description is not null && Description?.Equals(description) is not true) Description = description;

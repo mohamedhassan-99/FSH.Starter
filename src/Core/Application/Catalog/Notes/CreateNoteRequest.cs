@@ -10,6 +10,7 @@ public class CreateNoteRequest : IRequest<Guid>
 {
     public string Name { get; set; } = default!;
     public string? NoteContent { get; set; }
+    public Guid assetId { get; set; }
 }
 public class CreateNoteRequestValidator : CustomValidator<CreateNoteRequest>
 {
@@ -30,7 +31,7 @@ public class CreateNoteRequestHandler : IRequestHandler<CreateNoteRequest, Guid>
 
     public async Task<Guid> Handle(CreateNoteRequest request, CancellationToken cancellationToken)
     {
-        var note = new Note(request.Name, request.NoteContent);
+        var note = new Note(request.Name, request.NoteContent, request.assetId);
 
         await _repository.AddAsync(note, cancellationToken);
 

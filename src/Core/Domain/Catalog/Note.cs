@@ -12,7 +12,7 @@ public class Note : BaseEntity ,IAggregateRoot
     public string Name { get; set; }
     public Guid? AssetId { get; set; }
     public Asset Asset { get; set; }
-    public Note(string name, string? noteContent , Guid assetId)
+    public Note(string name, string? noteContent, Guid? assetId)
     {
         Name = name;
         NoteContent = noteContent;
