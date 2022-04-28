@@ -3,28 +3,27 @@ namespace FSH.Starter.Domain.Catalog;
 public class Asset : AuditableEntity, IAggregateRoot
 {
     public string Name { get; private set; } = default!;
-    public string? Summary { get; set; }
-    public string? Description { get; set; }
-    public string? Location { get; set; }
-    public string? Longitude { get; set; }
-    public string? Latitude { get; set; }
-    public string? Barcode { get; set; }
-    public string? QrCode { get; set; }
-    public string? Model { get; set; }
-    public string? Vendor { get; set; }
+    public string? Summary { get; private set; }
+    public string? Description { get; private set; }
+    public string? Location { get; private set; }
+    public string? Longitude { get; private set; }
+    public string? Latitude { get; private set; }
+    public string? Barcode { get; private set; }
+    public string? QrCode { get; private set; }
+    public string? Model { get; private set; }
+    public string? Vendor { get; private set; }
     public decimal? Rate { get; private set; }
     public string? ImagePath { get; private set; }
     public Guid? BrandId { get; private set; }
     public Guid? CategoryId { get; private set; }
     public Guid? ProjectId { get; private set; }
     public Guid? DepartmentId { get; private set; }
-    public ICollection<Tag> Tags { get; set; }
+    public IList<Tag>? Tags { get; private set; }
     public virtual Brand Brand { get; private set; } = default!;
     public virtual Category Category { get; private set; } = default!;
     public virtual Project Project { get; private set; } = default!;
     public virtual Department Department { get; private set; } = default!;
-     
-    public Asset(string name, string? summary, string? description, string? location, string? longitude, string? latitude, string? barcode, string? qrCode, string? model, string? vendor, decimal? rate, string? imagePath, Guid? brandId, Guid? categoryId, Guid? projectId, Guid? departmentId)
+    public Asset(string name, string? summary, string? description, string? location, string? longitude, string? latitude, string? barcode, string? qrCode, string? model, string? vendor, decimal? rate, string? imagePath, Guid? brandId, Guid? categoryId, Guid? projectId, Guid? departmentId, List<Tag>? tags)
     {
         Name = name;
         Description = description;
@@ -42,9 +41,10 @@ public class Asset : AuditableEntity, IAggregateRoot
         CategoryId = categoryId;
         ProjectId = projectId;
         DepartmentId = departmentId;
+        Tags = tags;
     }
 
-    public Asset Update(string? name, string? summary, string? description, string? location, string? longitude, string? latitude, string? barcode, string? qrCode, string? model, string? vendor, decimal? rate, string? imagePath, Guid? brandId, Guid? categoryId, Guid? projectId, Guid? departmentId)
+    public Asset Update(string? name, string? summary, string? description, string? location, string? longitude, string? latitude, string? barcode, string? qrCode, string? model, string? vendor, decimal? rate, string? imagePath, Guid? brandId, Guid? categoryId, Guid? projectId, Guid? departmentId, List<Tag>? tags)
     {
         if (name is not null && Name?.Equals(name) is not true) Name = name;
         if (summary is not null && Summary?.Equals(summary) is not true) Summary = summary;
@@ -61,6 +61,7 @@ public class Asset : AuditableEntity, IAggregateRoot
         if (categoryId.HasValue && categoryId.Value != Guid.Empty && !CategoryId.Equals(categoryId.Value)) CategoryId = categoryId.Value;
         if (projectId.HasValue && projectId.Value != Guid.Empty && !ProjectId.Equals(projectId.Value)) ProjectId = projectId.Value;
         if (departmentId.HasValue && departmentId.Value != Guid.Empty && !DepartmentId.Equals(departmentId.Value)) DepartmentId = departmentId.Value;
+        if (tags is not null && Tags?.Equals(tags) is not true) Tags = tags;
         if (imagePath is not null && ImagePath?.Equals(imagePath) is not true) ImagePath = imagePath;
         return this;
     }

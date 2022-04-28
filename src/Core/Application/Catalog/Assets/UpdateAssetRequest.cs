@@ -72,7 +72,8 @@ public class UpdateAssetRequestHandler : IRequestHandler<UpdateAssetRequest, Gui
             request.BrandId,
             request.CategoryId,
             request.ProjectId,
-            request.DepartmentId);
+            request.DepartmentId,
+            tags:null);
 
         // Add Domain Events to be raised after the commit
         asset.DomainEvents.Add(EntityUpdatedEvent.WithEntity(asset));
