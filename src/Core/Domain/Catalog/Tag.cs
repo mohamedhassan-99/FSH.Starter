@@ -10,5 +10,6 @@ public class Tag : BaseEntity, IAggregateRoot
 {
     public string Name { get; set; }
     public string? Color { get; set; }
+    public ICollection<Asset> Assets { get; set; }
 
 }

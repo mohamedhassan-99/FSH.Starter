@@ -10,7 +10,7 @@ public class Asset : AuditableEntity, IAggregateRoot
     public Guid? CategoryId { get; private set; }
     public Guid? ProjectId { get; private set; }
     public Guid? DepartmentId { get; private set; }
-  
+    public ICollection<Tag> Tags { get; set; }
     public virtual Brand Brand { get; private set; } = default!;
     public virtual Category Category { get; private set; } = default!;
     public virtual Project Project { get; private set; } = default!;
