@@ -3,7 +3,15 @@ namespace FSH.Starter.Domain.Catalog;
 public class Asset : AuditableEntity, IAggregateRoot
 {
     public string Name { get; private set; } = default!;
-    public string? Description { get; private set; }
+    public string? Summary { get; set; }
+    public string? Description { get; set; }
+    public string? Location { get; set; }
+    public string? Longitude { get; set; }
+    public string? Latitude { get; set; }
+    public string? Barcode { get; set; }
+    public string? QrCode { get; set; }
+    public string? Model { get; set; }
+    public string? Vendor { get; set; }
     public decimal? Rate { get; private set; }
     public string? ImagePath { get; private set; }
     public Guid? BrandId { get; private set; }
@@ -16,10 +24,18 @@ public class Asset : AuditableEntity, IAggregateRoot
     public virtual Project Project { get; private set; } = default!;
     public virtual Department Department { get; private set; } = default!;
      
-    public Asset(string name, string? description, decimal rate, string? imagePath, Guid? brandId, Guid? categoryId, Guid? projectId, Guid? departmentId)
+    public Asset(string name, string? summary, string? description, string? location, string? longitude, string? latitude, string? barcode, string? qrCode, string? model, string? vendor, decimal? rate, string? imagePath, Guid? brandId, Guid? categoryId, Guid? projectId, Guid? departmentId)
     {
         Name = name;
         Description = description;
+        Summary = summary;
+        Location = location;
+        Longitude = longitude;
+        Latitude = latitude;
+        Barcode = barcode;
+        QrCode = qrCode;
+        Model = model;
+        Vendor = vendor;
         Rate = rate;
         ImagePath = imagePath;
         BrandId = brandId;
@@ -28,10 +44,18 @@ public class Asset : AuditableEntity, IAggregateRoot
         DepartmentId = departmentId;
     }
 
-    public Asset Update(string? name, string? description, decimal? rate, string? imagePath,  Guid? brandId, Guid? categoryId, Guid? projectId, Guid? departmentId)
+    public Asset Update(string? name, string? summary, string? description, string? location, string? longitude, string? latitude, string? barcode, string? qrCode, string? model, string? vendor, decimal? rate, string? imagePath, Guid? brandId, Guid? categoryId, Guid? projectId, Guid? departmentId)
     {
         if (name is not null && Name?.Equals(name) is not true) Name = name;
+        if (summary is not null && Summary?.Equals(summary) is not true) Summary = summary;
         if (description is not null && Description?.Equals(description) is not true) Description = description;
+        if (location is not null && Location?.Equals(location) is not true) Location = location;
+        if (longitude is not null && Longitude?.Equals(longitude) is not true) Longitude = longitude;
+        if (latitude is not null && Latitude?.Equals(latitude) is not true) Latitude = latitude;
+        if (barcode is not null && Barcode?.Equals(barcode) is not true) Barcode = barcode;
+        if (qrCode is not null && QrCode?.Equals(qrCode) is not true) QrCode = qrCode;
+        if (model is not null && Model?.Equals(model) is not true) Model = model;
+        if (vendor is not null && Vendor?.Equals(vendor) is not true) Vendor = vendor;
         if (rate.HasValue && Rate != rate) Rate = rate.Value;
         if (brandId.HasValue && brandId.Value != Guid.Empty && !BrandId.Equals(brandId.Value)) BrandId = brandId.Value;
         if (categoryId.HasValue && categoryId.Value != Guid.Empty && !CategoryId.Equals(categoryId.Value)) CategoryId = categoryId.Value;

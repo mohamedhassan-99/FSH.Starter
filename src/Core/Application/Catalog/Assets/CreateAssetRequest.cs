@@ -4,13 +4,27 @@ namespace FSH.Starter.Application.Catalog.Assets;
 
 public class CreateAssetRequest : IRequest<Guid>
 {
-    public string Name { get; set; } = default!;
+    public string Name { get; private set; } = default!;
+    public string? Summary { get; set; }
     public string? Description { get; set; }
-    public decimal? Rate { get; set; }
-    public Guid? BrandId { get; set; }
-    public Guid? CategoryId { get; set; }
-    public Guid? ProjectId { get; set; }
-    public Guid? departmentId { get; set; }
+    public string? Location { get; set; }
+    public string? Longitude { get; set; }
+    public string? Latitude { get; set; }
+    public string? Barcode { get; set; }
+    public string? QrCode { get; set; }
+    public string? Model { get; set; }
+    public string? Vendor { get; set; }
+    public decimal? Rate { get; private set; }
+    public string? ImagePath { get; private set; }
+    public Guid? BrandId { get; private set; }
+    public Guid? CategoryId { get; private set; }
+    public Guid? ProjectId { get; private set; }
+    public Guid? DepartmentId { get; private set; }
+    public ICollection<Tag> Tags { get; set; }
+    public virtual Brand Brand { get; private set; } = default!;
+    public virtual Category Category { get; private set; } = default!;
+    public virtual Project Project { get; private set; } = default!;
+    public virtual Department Department { get; private set; } = default!;
 
     public FileUploadRequest? Image { get; set; }
 }
@@ -27,7 +41,23 @@ public class CreateAssetRequestHandler : IRequestHandler<CreateAssetRequest, Gui
     {
         string assetImagePath = await _file.UploadAsync<Asset>(request.Image, FileType.Image, cancellationToken);
 
-        var asset = new Asset(request.Name, request.Description, request.Rate, assetImagePath, request.BrandId, request.CategoryId, request.ProjectId, request.departmentId);
+        var asset = new Asset(
+            request.Name,
+            request.Summary,
+            request.Description,
+            request.Location,
+            request.Longitude,
+            request.Latitude,
+            request.Barcode,
+            request.QrCode,
+            request.Model,
+            request.Vendor,
+            request.Rate,
+            assetImagePath,
+            request.BrandId,
+            request.CategoryId,
+            request.ProjectId,
+            request.DepartmentId);
 
         // Add Domain Events to be raised after the commit
         asset.DomainEvents.Add(EntityCreatedEvent.WithEntity(asset));
