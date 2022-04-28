@@ -23,6 +23,10 @@ public class Asset : AuditableEntity, IAggregateRoot
     public virtual Category Category { get; private set; } = default!;
     public virtual Project Project { get; private set; } = default!;
     public virtual Department Department { get; private set; } = default!;
+    public Asset()
+    {
+
+    }
     public Asset(
         string name,
         string? summary,

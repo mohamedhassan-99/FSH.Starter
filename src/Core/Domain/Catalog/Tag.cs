@@ -8,6 +8,14 @@ namespace FSH.Starter.Domain.Catalog;
 
 public class Tag : BaseEntity, IAggregateRoot
 {
+
+    public string Name { get; private set; }
+    public string? Color { get; private set; }
+    public IList<Asset?> Assets { get; private set; }
+    public Tag()
+    {
+
+    }
     public Tag(string name, string? color, IList<Asset?> assets)
     {
         Name = name;
@@ -15,9 +23,7 @@ public class Tag : BaseEntity, IAggregateRoot
         Assets = assets;
     }
 
-    public string Name { get; private set; }
-    public string? Color { get; private set; }
-    public IList<Asset?> Assets { get; private set; }
+  
 
     public Tag Update(string? name, string? color, IList<Asset?> assets)
     {
