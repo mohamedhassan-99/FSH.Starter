@@ -15,7 +15,8 @@ public class UpdateAssetRequest : IRequest<Guid>
     public string? QrCode { get; set; }
     public string? Model { get; set; }
     public string? Vendor { get; set; }
-    public decimal Rate { get; set; }
+    public decimal? Rate { get; set; }
+    public IList<Tag?> Tags { get; private set; }
     public Guid BrandId { get; set; }
     public Guid CategoryId { get; set; }
     public Guid ProjectId { get; set; }
@@ -69,11 +70,12 @@ public class UpdateAssetRequestHandler : IRequestHandler<UpdateAssetRequest, Gui
             request.Vendor,
             request.Rate,
             assetImagePath,
+            request.Tags,
             request.BrandId,
             request.CategoryId,
             request.ProjectId,
-            request.DepartmentId,
-            tags:null);
+            request.DepartmentId
+            );
 
         // Add Domain Events to be raised after the commit
         asset.DomainEvents.Add(EntityUpdatedEvent.WithEntity(asset));

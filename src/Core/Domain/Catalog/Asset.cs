@@ -18,12 +18,29 @@ public class Asset : AuditableEntity, IAggregateRoot
     public Guid? CategoryId { get; private set; }
     public Guid? ProjectId { get; private set; }
     public Guid? DepartmentId { get; private set; }
-    public IList<Tag>? Tags { get; private set; }
+    public IList<Tag?> Tags { get; private set; }
     public virtual Brand Brand { get; private set; } = default!;
     public virtual Category Category { get; private set; } = default!;
     public virtual Project Project { get; private set; } = default!;
     public virtual Department Department { get; private set; } = default!;
-    public Asset(string name, string? summary, string? description, string? location, string? longitude, string? latitude, string? barcode, string? qrCode, string? model, string? vendor, decimal? rate, string? imagePath, Guid? brandId, Guid? categoryId, Guid? projectId, Guid? departmentId, List<Tag>? tags)
+    public Asset(
+        string name,
+        string? summary,
+        string? description,
+        string? location,
+        string? longitude,
+        string? latitude,
+        string? barcode,
+        string? qrCode,
+        string? model,
+        string? vendor,
+        decimal? rate,
+        string? imagePath,
+        IList<Tag?> tags,
+        Guid? brandId,
+        Guid? categoryId,
+        Guid? projectId,
+        Guid? departmentId)
     {
         Name = name;
         Description = description;
@@ -37,14 +54,31 @@ public class Asset : AuditableEntity, IAggregateRoot
         Vendor = vendor;
         Rate = rate;
         ImagePath = imagePath;
+        Tags = tags;
         BrandId = brandId;
         CategoryId = categoryId;
         ProjectId = projectId;
         DepartmentId = departmentId;
-        Tags = tags;
     }
 
-    public Asset Update(string? name, string? summary, string? description, string? location, string? longitude, string? latitude, string? barcode, string? qrCode, string? model, string? vendor, decimal? rate, string? imagePath, Guid? brandId, Guid? categoryId, Guid? projectId, Guid? departmentId, List<Tag>? tags)
+    public Asset Update(
+        string? name,
+        string? summary,
+        string? description,
+        string? location,
+        string? longitude,
+        string? latitude,
+        string? barcode,
+        string? qrCode,
+        string? model,
+        string? vendor,
+        decimal? rate,
+        string? imagePath,
+        IList<Tag?> tags,
+        Guid? brandId,
+        Guid? categoryId,
+        Guid? projectId,
+        Guid? departmentId)
     {
         if (name is not null && Name?.Equals(name) is not true) Name = name;
         if (summary is not null && Summary?.Equals(summary) is not true) Summary = summary;
