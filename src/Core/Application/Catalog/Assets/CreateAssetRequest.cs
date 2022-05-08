@@ -21,8 +21,6 @@ public class CreateAssetRequest : IRequest<Guid>
     public Guid? ProjectId { get; set; }
     public Guid? DepartmentId { get; set; }
     public IList<Guid>? TagsIds { get; set; }
-
-
     public FileUploadRequest? Image { get; set; }
 }
 
@@ -30,7 +28,6 @@ public class CreateAssetRequestHandler : IRequestHandler<CreateAssetRequest, Gui
 {
     private readonly IRepository<Asset> _repository;
     private readonly IFileStorageService _file;
-
     public CreateAssetRequestHandler(IRepository<Asset> repository, IFileStorageService file) =>
         (_repository, _file) = (repository, file);
 

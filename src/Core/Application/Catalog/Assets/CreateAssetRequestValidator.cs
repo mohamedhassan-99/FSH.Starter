@@ -28,9 +28,9 @@ public class CreateAssetRequestValidator : CustomValidator<CreateAssetRequest>
                     .NotEmpty()
                     .MustAsync(async (id, ct) => await projectRepo.GetByIdAsync(id, ct) is not null)
                         .WithMessage((_, id) => string.Format(localizer["project.notfound"], id));
-        RuleFor(p => p.TagsIds)
-                    .NotEmpty()
-                    .MustAsync(async (id, ct) => await tagRepo.GetByIdAsync(id, ct) is not null)
-                        .WithMessage((_, id) => string.Format(localizer["tag.notfound"], id));
+        //RuleFor(p => p.TagsIds)
+        //            .NotEmpty()
+        //            .MustAsync(async (id, ct) => await tagRepo.GetByIdAsync(id, ct) is not null)
+        //                .WithMessage((_, id) => string.Format(localizer["tag.notfound"], id));
     }
 }
