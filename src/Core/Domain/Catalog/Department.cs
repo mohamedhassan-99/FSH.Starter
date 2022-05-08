@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FSH.Starter.Domain.Catalog;
 
-public class Department : BaseEntity,IAggregateRoot
+public class Department : AuditableEntity,IAggregateRoot
 {
     public string Name { get; private set; }
     public string? Description { get; private set; }

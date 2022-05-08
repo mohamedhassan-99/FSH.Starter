@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace FSH.Starter.Domain.Catalog;
 
 public class Asset : AuditableEntity, IAggregateRoot
@@ -18,11 +20,14 @@ public class Asset : AuditableEntity, IAggregateRoot
     public Guid? CategoryId { get; private set; }
     public Guid? ProjectId { get; private set; }
     public Guid? DepartmentId { get; private set; }
-    public IList<Tag?> Tags { get; private set; }
+    [NotMapped]
+    public IList<Guid>? TagsIds { get; private set; }
     public virtual Brand Brand { get; private set; } = default!;
     public virtual Category Category { get; private set; } = default!;
     public virtual Project Project { get; private set; } = default!;
     public virtual Department Department { get; private set; } = default!;
+    [ForeignKey(nameof(TagsIds))]
+    public virtual IList<Tag> Tags { get; private set; } = default!;
     public Asset()
     {
 
@@ -40,7 +45,7 @@ public class Asset : AuditableEntity, IAggregateRoot
         string? vendor,
         decimal? rate,
         string? imagePath,
-        IList<Tag?> tags,
+        IList<Guid>? tagsIds,
         Guid? brandId,
         Guid? categoryId,
         Guid? projectId,
@@ -58,7 +63,7 @@ public class Asset : AuditableEntity, IAggregateRoot
         Vendor = vendor;
         Rate = rate;
         ImagePath = imagePath;
-        Tags = tags;
+        TagsIds = tagsIds;
         BrandId = brandId;
         CategoryId = categoryId;
         ProjectId = projectId;
@@ -78,7 +83,7 @@ public class Asset : AuditableEntity, IAggregateRoot
         string? vendor,
         decimal? rate,
         string? imagePath,
-        IList<Tag?> tags,
+        IList<Guid>? tagsIds,
         Guid? brandId,
         Guid? categoryId,
         Guid? projectId,
@@ -99,7 +104,7 @@ public class Asset : AuditableEntity, IAggregateRoot
         if (categoryId.HasValue && categoryId.Value != Guid.Empty && !CategoryId.Equals(categoryId.Value)) CategoryId = categoryId.Value;
         if (projectId.HasValue && projectId.Value != Guid.Empty && !ProjectId.Equals(projectId.Value)) ProjectId = projectId.Value;
         if (departmentId.HasValue && departmentId.Value != Guid.Empty && !DepartmentId.Equals(departmentId.Value)) DepartmentId = departmentId.Value;
-        if (tags is not null && Tags?.Equals(tags) is not true) Tags = tags;
+        if (tagsIds is not null && TagsIds?.Equals(tagsIds) is not true) TagsIds = tagsIds;
         if (imagePath is not null && ImagePath?.Equals(imagePath) is not true) ImagePath = imagePath;
         return this;
     }
