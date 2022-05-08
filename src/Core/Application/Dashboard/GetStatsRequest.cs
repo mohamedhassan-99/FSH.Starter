@@ -14,16 +14,18 @@ public class GetStatsRequestHandler : IRequestHandler<GetStatsRequest, StatsDto>
     private readonly IReadRepository<Brand> _brandRepo;
     private readonly IReadRepository<Category> _categoryRepo;
     private readonly IReadRepository<Project> _projectRepo;
+    private readonly IReadRepository<Department> _departmentRepo;
     private readonly IReadRepository<Product> _productRepo;
     private readonly IReadRepository<Asset> _assetRepo;
     private readonly IStringLocalizer<GetStatsRequestHandler> _localizer;
 
-    public GetStatsRequestHandler(IUserService userService, IRoleService roleService, IReadRepository<Brand> brandRepo, IReadRepository<Category> categoryRepo, IReadRepository<Product> productRepo, IReadRepository<Project> projectRepo, IReadRepository<Asset> assetRepo, IStringLocalizer<GetStatsRequestHandler> localizer)
+    public GetStatsRequestHandler(IUserService userService, IRoleService roleService, IReadRepository<Brand> brandRepo, IReadRepository<Category> categoryRepo, IReadRepository<Department> departmentRepo, IReadRepository<Product> productRepo, IReadRepository<Project> projectRepo, IReadRepository<Asset> assetRepo, IStringLocalizer<GetStatsRequestHandler> localizer)
     {
         _userService = userService;
         _roleService = roleService;
         _brandRepo = brandRepo;
         _categoryRepo = categoryRepo;
+        _departmentRepo = departmentRepo;
         _productRepo = productRepo;
         _projectRepo = projectRepo;
         _assetRepo = assetRepo;
@@ -39,6 +41,7 @@ public class GetStatsRequestHandler : IRequestHandler<GetStatsRequest, StatsDto>
             BrandCount = await _brandRepo.CountAsync(cancellationToken),
             CategoryCount = await _categoryRepo.CountAsync(cancellationToken),
             ProjectCount = await _projectRepo.CountAsync(cancellationToken),
+            DepartmentCount = await _departmentRepo.CountAsync(cancellationToken),
             UserCount = await _userService.GetCountAsync(cancellationToken),
             RoleCount = await _roleService.GetCountAsync(cancellationToken)
         };
@@ -49,6 +52,7 @@ public class GetStatsRequestHandler : IRequestHandler<GetStatsRequest, StatsDto>
         double[] brandsFigure = new double[13];
         double[] categoriesFigure = new double[13];
         double[] projectsFigure = new double[13];
+        double[] departmentsFigure = new double[13];
         for (int i = 1; i <= 12; i++)
         {
             int month = i;
@@ -60,19 +64,22 @@ public class GetStatsRequestHandler : IRequestHandler<GetStatsRequest, StatsDto>
             var brandSpec = new AuditableEntitiesByCreatedOnBetweenSpec<Brand>(filterStartDate, filterEndDate);
             var categorySpec = new AuditableEntitiesByCreatedOnBetweenSpec<Category>(filterStartDate, filterEndDate);
             var projectSpec = new AuditableEntitiesByCreatedOnBetweenSpec<Project>(filterStartDate, filterEndDate);
+            var departmentSpec = new AuditableEntitiesByCreatedOnBetweenSpec<Department>(filterStartDate, filterEndDate);
 
             assetsFigure[i - 1] = await _assetRepo.CountAsync(assetSpec, cancellationToken);
             productsFigure[i - 1] = await _productRepo.CountAsync(productSpec, cancellationToken);
             brandsFigure[i - 1] = await _brandRepo.CountAsync(brandSpec, cancellationToken);
             categoriesFigure[i - 1] = await _categoryRepo.CountAsync(categorySpec, cancellationToken);
             projectsFigure[i - 1] = await _projectRepo.CountAsync(projectSpec, cancellationToken);
+            departmentsFigure[i - 1] = await _departmentRepo.CountAsync(departmentSpec, cancellationToken);
         }
 
         stats.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Assets"], Data = assetsFigure });
         stats.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Products"], Data = productsFigure });
         stats.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Brands"], Data = brandsFigure });
         stats.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Categories"], Data = categoriesFigure });
-        stats.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Projects"], Data = categoriesFigure });
+        stats.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Projects"], Data = projectsFigure });
+        stats.DataEnterBarChart.Add(new ChartSeries { Name = _localizer["Department"], Data = departmentsFigure });
 
         return stats;
     }
