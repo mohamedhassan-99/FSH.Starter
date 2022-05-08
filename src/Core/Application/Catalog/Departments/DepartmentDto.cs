@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FSH.Starter.Application.Catalog.Departments;
 
-public class DepartmentDto
+public class DepartmentDto:IDto
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = default!;
