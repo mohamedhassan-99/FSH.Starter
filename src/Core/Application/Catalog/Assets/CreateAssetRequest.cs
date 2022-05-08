@@ -23,12 +23,12 @@ public class CreateAssetRequest : IRequest<Guid>
     public Guid? DepartmentId { get; private set; }
     public IList<Guid>? TagsIds { get; private set; }
 
-    [ForeignKey(nameof(TagsIds))]
-    public virtual IList<Tag> Tags { get; private set; } = default!;
-    public virtual Brand Brand { get; private set; } = default!;
-    public virtual Category Category { get; private set; } = default!;
-    public virtual Project Project { get; private set; } = default!;
-    public virtual Department Department { get; private set; } = default!;
+    //[ForeignKey(nameof(TagsIds))]
+    //public virtual IList<Tag> Tags { get; private set; } = default!;
+    //public virtual Brand Brand { get; private set; } = default!;
+    //public virtual Category Category { get; private set; } = default!;
+    //public virtual Project Project { get; private set; } = default!;
+    //public virtual Department Department { get; private set; } = default!;
 
     public FileUploadRequest? Image { get; set; }
 }
