@@ -8,8 +8,6 @@ namespace FSH.Starter.Application.Catalog.Assets;
 
 public class AssetsByTagSpec : Specification<Asset>
 {
-    public AssetsByTagSpec(Tag tag)
-    {
-        Query.Where(p => p.Tags.Contains(tag));
-    }
+    public AssetsByTagSpec(Guid tagId) =>
+        Query.Where(p => p.TagsIds[1] == tagId);
 }
