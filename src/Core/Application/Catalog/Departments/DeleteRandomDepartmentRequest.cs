@@ -1,4 +1,4 @@
-﻿using FSH.Starter.Application.Catalog.Brands;
+﻿using FSH.Starter.Application.Catalog.Departments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +19,7 @@ public class DeleteRandomDepartmentRequestHandler : IRequestHandler<DeleteRandom
 
     public Task<string> Handle(DeleteRandomDepartmentRequest request, CancellationToken cancellationToken)
     {
-        string jobId = _jobService.Schedule<IBrandGeneratorJob>(x => x.CleanAsync(default), TimeSpan.FromSeconds(5));
+        string jobId = _jobService.Schedule<IDepartmentGeneratorJob>(x => x.CleanAsync(default), TimeSpan.FromSeconds(5));
         return Task.FromResult(jobId);
     }
 }

@@ -4,5 +4,4 @@ public class DepartmentByNameSpec : Specification<Department>, ISingleResultSpec
 {
     public DepartmentByNameSpec(string name) =>
         Query.Where(b => b.Name == name);
-     
 }

@@ -1,4 +1,4 @@
-﻿using FSH.Starter.Application.Catalog.Brands;
+﻿using FSH.Starter.Application.Catalog.Departments;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +20,7 @@ public class GenerateRandomDepartmentRequestHandler : IRequestHandler<GenerateRa
 
     public Task<string> Handle(GenerateRandomDepartmentRequest request, CancellationToken cancellationToken)
     {
-        string jobId = _jobService.Enqueue<IBrandGeneratorJob>(x => x.GenerateAsync(request.NSeed, default));
+        string jobId = _jobService.Enqueue<IDepartmentGeneratorJob>(x => x.GenerateAsync(request.NSeed, default));
         return Task.FromResult(jobId);
     }
 }
