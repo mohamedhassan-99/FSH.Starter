@@ -2,7 +2,7 @@ namespace FSH.Starter.Application.Catalog.Assets;
 
 public class UpdateAssetRequestValidator : CustomValidator<UpdateAssetRequest>
 {
-    public UpdateAssetRequestValidator(IReadRepository<Asset> assetRepo, IReadRepository<Brand> brandRepo, IReadRepository<Category> categoryRepo, IReadRepository<Project> projectRepo, IStringLocalizer<UpdateAssetRequestValidator> localizer)
+    public UpdateAssetRequestValidator(IReadRepository<Asset> assetRepo, IReadRepository<Brand> brandRepo, IReadRepository<Category> categoryRepo, IReadRepository<Project> projectRepo, IReadRepository<Tag> tagsRepo, IStringLocalizer<UpdateAssetRequestValidator> localizer)
     {
         RuleFor(p => p.Name)
             .NotEmpty()
@@ -31,6 +31,10 @@ public class UpdateAssetRequestValidator : CustomValidator<UpdateAssetRequest>
         RuleFor(p => p.ProjectId)
             .NotEmpty()
             .MustAsync(async (id, ct) => await projectRepo.GetByIdAsync(id, ct) is not null)
+                .WithMessage((_, id) => string.Format(localizer["project.notfound"], id));
+        RuleFor(p => p.TagsIds)
+            .NotEmpty()
+            .MustAsync(async (id, ct) => await tagsRepo.GetByIdAsync(id, ct) is not null)
                 .WithMessage((_, id) => string.Format(localizer["project.notfound"], id));
     }
 }

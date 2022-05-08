@@ -1,4 +1,5 @@
 using FSH.Starter.Domain.Common.Events;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FSH.Starter.Application.Catalog.Assets;
 
@@ -20,7 +21,10 @@ public class CreateAssetRequest : IRequest<Guid>
     public Guid? CategoryId { get; private set; }
     public Guid? ProjectId { get; private set; }
     public Guid? DepartmentId { get; private set; }
-    public IList<Tag>? Tags { get; set; }
+    public IList<Guid>? TagsIds { get; private set; }
+
+    [ForeignKey(nameof(TagsIds))]
+    public virtual IList<Tag> Tags { get; private set; } = default!;
     public virtual Brand Brand { get; private set; } = default!;
     public virtual Category Category { get; private set; } = default!;
     public virtual Project Project { get; private set; } = default!;
@@ -54,7 +58,7 @@ public class CreateAssetRequestHandler : IRequestHandler<CreateAssetRequest, Gui
             request.Vendor,
             request.Rate,
             assetImagePath,
-            request.Tags,
+            request.TagsIds,
             request.BrandId,
             request.CategoryId,
             request.ProjectId,

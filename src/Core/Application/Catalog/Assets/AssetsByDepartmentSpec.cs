@@ -8,6 +8,6 @@ namespace FSH.Starter.Application.Catalog.Assets;
 
 public class AssetsByDepartmentSpec : Specification<Asset>
 {
-    public AssetsByDepartmentSpec(Guid brandId) =>
-        Query.Where(p => p.BrandId == brandId);
+    public AssetsByDepartmentSpec(Guid departmentId) =>
+        Query.Where(p => p.DepartmentId == departmentId);
 }

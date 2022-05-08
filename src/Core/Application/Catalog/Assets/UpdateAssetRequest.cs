@@ -16,7 +16,7 @@ public class UpdateAssetRequest : IRequest<Guid>
     public string? Model { get; set; }
     public string? Vendor { get; set; }
     public decimal? Rate { get; set; }
-    public IList<Tag?> Tags { get; private set; }
+    public IList<Guid> TagsIds { get; set; }
     public Guid BrandId { get; set; }
     public Guid CategoryId { get; set; }
     public Guid ProjectId { get; set; }
@@ -70,7 +70,7 @@ public class UpdateAssetRequestHandler : IRequestHandler<UpdateAssetRequest, Gui
             request.Vendor,
             request.Rate,
             assetImagePath,
-            request.Tags,
+            request.TagsIds,
             request.BrandId,
             request.CategoryId,
             request.ProjectId,

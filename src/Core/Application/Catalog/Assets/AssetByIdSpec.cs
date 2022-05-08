@@ -6,5 +6,6 @@ public class AssetByIdSpec : Specification<Asset>, ISingleResultSpecification
         Query.Where(p => p.Id == id)
         .Include(p => p.Brand)
         .Include(p => p.Category)
-        .Include(p => p.Project);
+        .Include(p => p.Project)
+        .Include(p => p.Tags);
 }

@@ -2,6 +2,6 @@
 
 public class AssetsByCategorySpec : Specification<Asset>
 {
-    public AssetsByCategorySpec(Guid brandId) =>
-        Query.Where(p => p.BrandId == brandId);
+    public AssetsByCategorySpec(Guid categoryId) =>
+        Query.Where(p => p.CategoryId == categoryId);
 }
