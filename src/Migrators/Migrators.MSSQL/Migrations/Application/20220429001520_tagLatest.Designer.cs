@@ -4,6 +4,7 @@ using FSH.Starter.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Migrators.MSSQL.Migrations.Application
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220429001520_tagLatest")]
+    partial class tagLatest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,12 +30,12 @@ namespace Migrators.MSSQL.Migrations.Application
                     b.Property<Guid>("TagsId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("TagsId1")
+                    b.Property<Guid>("TagsIds")
                         .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("TagsId", "TagsId1");
+                    b.HasKey("TagsId", "TagsIds");
 
-                    b.HasIndex("TagsId1");
+                    b.HasIndex("TagsIds");
 
                     b.ToTable("AssetTag", "Catalog");
                 });
@@ -722,15 +724,15 @@ namespace Migrators.MSSQL.Migrations.Application
 
             modelBuilder.Entity("AssetTag", b =>
                 {
-                    b.HasOne("FSH.Starter.Domain.Catalog.Asset", null)
+                    b.HasOne("FSH.Starter.Domain.Catalog.Tag", null)
                         .WithMany()
                         .HasForeignKey("TagsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FSH.Starter.Domain.Catalog.Tag", null)
+                    b.HasOne("FSH.Starter.Domain.Catalog.Asset", null)
                         .WithMany()
-                        .HasForeignKey("TagsId1")
+                        .HasForeignKey("TagsIds")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
