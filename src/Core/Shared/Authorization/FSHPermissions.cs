@@ -53,12 +53,14 @@ public static class FSHPermissions
         new("Delete Roles", FSHAction.Delete, FSHResource.Roles),
         new("View RoleClaims", FSHAction.View, FSHResource.RoleClaims),
         new("Update RoleClaims", FSHAction.Update, FSHResource.RoleClaims),
+
         new("View Products", FSHAction.View, FSHResource.Products, IsBasic: true),
         new("Search Products", FSHAction.Search, FSHResource.Products, IsBasic: true),
         new("Create Products", FSHAction.Create, FSHResource.Products),
         new("Update Products", FSHAction.Update, FSHResource.Products),
         new("Delete Products", FSHAction.Delete, FSHResource.Products),
         new("Export Products", FSHAction.Export, FSHResource.Products),
+
         new("View Assets", FSHAction.View, FSHResource.Assets, IsBasic: true),
         new("Search Assets", FSHAction.Search, FSHResource.Assets, IsBasic: true),
         new("Create Assets", FSHAction.Create, FSHResource.Assets),
@@ -72,6 +74,8 @@ public static class FSHPermissions
         new("Update Departments", FSHAction.Update, FSHResource.Departments),
         new("Delete Departments", FSHAction.Delete, FSHResource.Departments),
         new("Export Departments", FSHAction.Export, FSHResource.Departments),
+        new("Generate Departments", FSHAction.Generate, FSHResource.Departments),
+        new("Clean Departments", FSHAction.Clean, FSHResource.Departments),
 
         new("View Projects", FSHAction.View, FSHResource.Projects, IsBasic: true),
         new("Search Projects", FSHAction.Search, FSHResource.Projects, IsBasic: true),
@@ -79,6 +83,8 @@ public static class FSHPermissions
         new("Update Projects", FSHAction.Update, FSHResource.Projects),
         new("Delete Projects", FSHAction.Delete, FSHResource.Projects),
         new("Export Projects", FSHAction.Export, FSHResource.Projects),
+        new("Generate Projects", FSHAction.Generate, FSHResource.Projects),
+        new("Clean Projects", FSHAction.Clean, FSHResource.Projects),
 
         new("View Tags", FSHAction.View, FSHResource.Tags, IsBasic: true),
         new("Search Tags", FSHAction.Search, FSHResource.Tags, IsBasic: true),
@@ -86,6 +92,8 @@ public static class FSHPermissions
         new("Update Tags", FSHAction.Update, FSHResource.Tags),
         new("Delete Tags", FSHAction.Delete, FSHResource.Tags),
         new("Export Tags", FSHAction.Export, FSHResource.Tags),
+        new("Generate Tags", FSHAction.Generate, FSHResource.Tags),
+        new("Clean Tags", FSHAction.Clean, FSHResource.Tags),
 
         new("View Brands", FSHAction.View, FSHResource.Brands, IsBasic: true),
         new("Search Brands", FSHAction.Search, FSHResource.Brands, IsBasic: true),
@@ -94,6 +102,7 @@ public static class FSHPermissions
         new("Delete Brands", FSHAction.Delete, FSHResource.Brands),
         new("Generate Brands", FSHAction.Generate, FSHResource.Brands),
         new("Clean Brands", FSHAction.Clean, FSHResource.Brands),
+
         new("View Brands", FSHAction.View, FSHResource.Categories, IsBasic: true),
         new("Search Brands", FSHAction.Search, FSHResource.Categories, IsBasic: true),
         new("Create Brands", FSHAction.Create, FSHResource.Categories),
@@ -101,6 +110,7 @@ public static class FSHPermissions
         new("Delete Brands", FSHAction.Delete, FSHResource.Categories),
         new("Generate Brands", FSHAction.Generate, FSHResource.Categories),
         new("Clean Brands", FSHAction.Clean, FSHResource.Categories),
+
         new("View Tenants", FSHAction.View, FSHResource.Tenants, IsRoot: true),
         new("Create Tenants", FSHAction.Create, FSHResource.Tenants, IsRoot: true),
         new("Update Tenants", FSHAction.Update, FSHResource.Tenants, IsRoot: true),
