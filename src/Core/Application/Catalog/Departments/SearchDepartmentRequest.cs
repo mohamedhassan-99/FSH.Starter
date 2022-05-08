@@ -17,3 +17,15 @@ public class DepartmentBySearchRequestSpec : EntitiesByPaginationFilterSpec<Depa
         : base(request) =>
         Query.OrderBy(c => c.Name, !request.HasOrderBy());
 }
+public class SearchDepartmentRequestHandler : IRequestHandler<SearchDepartmentRequest, PaginationResponse<DepartmentDto>>
+{
+    private readonly IReadRepository<Department> _repository;
+
+    public SearchDepartmentRequestHandler(IReadRepository<Department> repository) => _repository = repository;
+
+    public async Task<PaginationResponse<DepartmentDto>> Handle(SearchDepartmentRequest request, CancellationToken cancellationToken)
+    {
+        var spec = new DepartmentBySearchRequestSpec(request);
+        return await _repository.PaginatedListAsync(spec, request.PageNumber, request.PageSize, cancellationToken);
+    }
+}
