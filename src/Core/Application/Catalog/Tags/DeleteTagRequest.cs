@@ -21,12 +21,12 @@ public class DeleteTagRequestHandler : IRequestHandler<DeleteTagRequest, Guid>
 
     public async Task<Guid> Handle(DeleteTagRequest request, CancellationToken cancellationToken)
     {
-        if (await _assetRepo.AnyAsync(new AssetsByTagSpec(request.Id), cancellationToken))
+        var tag = await _tagRepo.GetByIdAsync(request.Id, cancellationToken);
+
+        if (await _assetRepo.AnyAsync(new AssetsByTagSpec(tag), cancellationToken))
         {
             throw new ConflictException(_localizer["tag.cannotbedeleted"]);
         }
-
-        var tag = await _tagRepo.GetByIdAsync(request.Id, cancellationToken);
 
         _ = tag ?? throw new NotFoundException(_localizer["tags.notfound"]);
 
