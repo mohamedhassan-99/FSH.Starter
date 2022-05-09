@@ -30,8 +30,8 @@ public class Asset : AuditableEntity, IAggregateRoot
     public virtual IList<Tag> Tags { get; private set; } = default!;
     public Asset()
     {
-
     }
+
     public Asset(
         string name,
         string? summary,
